@@ -63,8 +63,9 @@ public class EmployeeController {
 	public List<Employee> getEmployeeByCondition(@RequestBody Employee employee) {
 		return employeeService.getEmployeeByCondition(employee);
 	}
+
+	@PostMapping
+	public Employee saveEmployee(@RequestBody Employee employee) {
+		return employeeService.saveEmployee(employee);
+	}
 }
-
-
-
-

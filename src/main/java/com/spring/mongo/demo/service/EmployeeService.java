@@ -23,4 +23,5 @@ public interface EmployeeService {
 	
 	List<Employee> getEmployeeByCondition(Employee employee);
 
+    Employee saveEmployee(Employee employee);
 }

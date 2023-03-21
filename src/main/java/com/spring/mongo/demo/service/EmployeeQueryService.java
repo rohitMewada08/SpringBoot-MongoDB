@@ -2,6 +2,7 @@ package com.spring.mongo.demo.service;
 
 import java.util.List;
 
+import com.spring.mongo.demo.model.Address;
 import com.spring.mongo.demo.model.Employee;
 
 public interface EmployeeQueryService {
@@ -20,5 +21,7 @@ public interface EmployeeQueryService {
 
 	List<Employee> getEmployeeByCondition(Employee employee);
 
+	void doUpdateEmployeeSalary(int empId, float salary);
 
+	void doUpdateEmployeeAddress(int empId, Address address);
 }

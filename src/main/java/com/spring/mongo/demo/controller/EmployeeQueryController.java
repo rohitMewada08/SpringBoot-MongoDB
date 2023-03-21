@@ -2,7 +2,9 @@ package com.spring.mongo.demo.controller;
 
 import java.util.List;
 
+import com.spring.mongo.demo.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.spring.mongo.demo.model.Employee;
@@ -59,4 +61,16 @@ public class EmployeeQueryController {
         return employeeQueryService.getEmployeeByCondition(employee);
     }
 
+    @PutMapping("/update-salary/{empId}")
+    public ResponseEntity<String> getEmployeeByCondition(@PathVariable int empId, @RequestParam float salary) {
+                employeeQueryService.doUpdateEmployeeSalary(empId, salary);
+        return ResponseEntity.ok().body("salary update done");
+    }
+
+    @PutMapping("/update-address/{empId}")
+    public ResponseEntity<String> updateAddress(@PathVariable int empId,  @RequestBody Address address) {
+        System.out.println("address"+ address);
+        employeeQueryService.doUpdateEmployeeAddress(empId,address);
+        return ResponseEntity.ok().body("address update done");
+    }
 }

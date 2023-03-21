@@ -5,6 +5,8 @@ import com.spring.mongo.demo.model.SuperHero;
 import com.spring.mongo.demo.repository.EmployeeRepository;
 import com.spring.mongo.demo.repository.SuperHeroRepository;
 import com.spring.mongo.demo.utils.HelperUtil;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableMongoRepositories
+@OpenAPIDefinition(info = @Info(title = "API", version = "2.0", description = ""))
 public class SpringBootMongoDBApplication {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());

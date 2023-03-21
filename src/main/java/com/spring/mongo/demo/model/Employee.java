@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,5 +22,6 @@ public class Employee implements Serializable {
 	private String firstName;
 	private String lastName;
 	private float salary;
+	private List<Address> addresses;
 	
 }

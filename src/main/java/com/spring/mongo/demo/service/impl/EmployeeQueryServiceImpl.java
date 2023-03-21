@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.spring.mongo.demo.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -132,6 +133,20 @@ public class EmployeeQueryServiceImpl implements EmployeeQueryService {
 		// (null != employee.getFirstName() || employee.getEmpId() > 0
 		// || null != employee.getLastName() || employee.getSalary() > 0))
 		return employees;
+	}
+
+	@Override
+	public void doUpdateEmployeeSalary(int empId, float salary) {
+		if (empId != 0 ) {
+			employeeQueryDao.doUpdateEmployeeSalary(empId, salary);
+		}
+	}
+
+	@Override
+	public void doUpdateEmployeeAddress(int empId, Address address) {
+		if (address != null ) {
+			employeeQueryDao.doUpdateEmployeeAddress(empId, address);
+		}
 	}
 
 }

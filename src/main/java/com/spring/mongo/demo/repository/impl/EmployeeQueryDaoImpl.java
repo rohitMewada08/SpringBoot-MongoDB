@@ -3,11 +3,13 @@ package com.spring.mongo.demo.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.spring.mongo.demo.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mongo.demo.model.Employee;
@@ -68,7 +70,13 @@ class EmployeeQueryDaoImpl implements EmployeeQueryDao {
         return mongoTemplate.findOne(query, Employee.class);
     }
 
-
+    @Override
+    public void doUpdateEmployeeSalary(int empId, float salary) {
+        Query query = new Query(Criteria.where("empId").is(empId));
+        Update update = new Update();
+        update.set("salary", salary);
+        mongoTemplate.updateFirst(query, update, Employee.class);
+    }
 
 
     @Override
@@ -82,5 +90,11 @@ class EmployeeQueryDaoImpl implements EmployeeQueryDao {
         return mongoTemplate.find(query, Employee.class);
     }
 
-
+    @Override
+    public void doUpdateEmployeeAddress(int empId, Address address) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("empId").is(empId).and("addresses._id").is(address.get_id()));
+        Update update = new Update().set("addresses.$.", address);
+        mongoTemplate.updateFirst(query, update, Employee.class);
+    }
 }
